@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public abstract class Peças {
-    private String idPeca;
-    private double precoDeCompra;
-    private int quantidadeDeEstoque;
+    protected String idPeca;
+    protected double precoDeCompra;
+    protected int quantidadeDeEstoque;
 
-    static ArrayList<Peças> listaPeças = new ArrayList<>();
+    static List<Peças> listaPeças = new ArrayList<>();
     static Scanner scn = new Scanner(System.in);
 
     public String getIdPeca() {
@@ -48,41 +49,62 @@ public abstract class Peças {
                 '}';
     }
 
-    public double definePrecoDeVenda(){
-        return precoDeCompra;
-    }
-    public void vende(int quantidade){
 
+    public double PreçoVenda(double PreçoDeCompra){
+        return precoDeCompra * 0.0;
     }
 
-    public static void adicionarPeça(){
-        System.out.println("Digite o id da peça: ");
-        String idPeca = scn.next();
+    public void adicionarPeça() {
 
-        System.out.println("Digite o preço de compra da peça");
-        double precoDeCompra = scn.nextDouble();
-
-        System.out.println("Digite a quantidade que deseja adicionar");
-        int quantidadeDeEstoque = scn.nextInt();
-
-        listaPeças.add(new Peças(idPeca, precoDeCompra,quantidadeDeEstoque) {
-        });
-
+        System.out.println("teste");
     }
-    public static void vizualizarPeça(){
-        for (int x = 0; x < listaPeças.size(); x++  ){
+
+    public static void vizualizarPeça() {
+        for (int x = 0; x < listaPeças.size(); x++) {
             System.out.println(listaPeças.get(x));
         }
     }
-    public static void removerPeça(){
+
+    public void alterarPeça() {
+        System.out.println("Digite a peca a ser alterada");
+        for (Peças x : listaPeças) {
+            System.out.println("item " + (listaPeças.indexOf(x)) + ": " + x.idPeca);
+        }
+        int alterado = scn.nextInt();
+        System.out.println("Produto a ser alterado:  " + listaPeças.get(alterado));
+
+        System.out.println("Digite os valores da alteracao:");
+
+        System.out.println("Id alterado do produto");
+        scn.nextLine();
+        String id = scn.nextLine();
+
+        System.out.println("Preço alterado no produto");
+        double preçodecompra = scn.nextDouble();
+
+        System.out.println("Digite a quantidade que está no estoque");
+        int quantidadeDeEstoque = scn.nextInt();
+
+        listaPeças.remove(alterado);
+        listaPeças.add(new Peças(id, preçodecompra, quantidadeDeEstoque) {
+
+        });
+
+        System.out.println("produto alterado com sucesso!");
+    }
+
+
+    public void removerPeça() {
         System.out.println("Deletar uma peça");
         System.out.println("Escolha o indice do peça que deseja deletar");
         for (int i = 0; i < listaPeças.size(); i++) {
-            System.out.println("Indice :"+i+" - "+listaPeças.get(i));
+            System.out.println("Indice :" + i + " - " + listaPeças.get(i));
         }
         int removido = scn.nextInt();
         listaPeças.remove(removido);
         System.out.println("Peça deletada com sucesso");
 
     }
+
 }
+

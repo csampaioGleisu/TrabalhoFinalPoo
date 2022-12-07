@@ -1,6 +1,8 @@
 public class Adm extends Pessoa{
     private String codigoadm;
 
+
+
     public String getCodigoadm() {
         return codigoadm;
     }
@@ -17,10 +19,7 @@ public class Adm extends Pessoa{
 
     @Override
     public String toString() {
-
-        return "Adm {" +
-                "nome = " + getNome()+ ", " +
-                "id = " + getId() + ", " +
+        return "Adm{" +
                 "codigoadm='" + codigoadm + '\'' +
                 '}';
     }
